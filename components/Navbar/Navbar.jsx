@@ -13,9 +13,10 @@ const Navbar = (props) => {
           fontSize={"small"}
           fontWeight={"bold"}
           letterSpacing={"2px"}
-          fontFamily={
-            '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif'
-          }
+          fontFamily={'"Raleway", sans-serif'}
+          // fontFamily={
+          //   '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif'
+          // }
         >
           <marquee>{props.navData.routes}</marquee>
         </Text>
@@ -30,14 +31,24 @@ const Navbar = (props) => {
       >
         <Stack py={1} pl={"2"} bg={"#B28900"} w={"50%"} justify={"right"}>
           <Link href={props.navData.email} isExternal>
-            <Text fontSize={"small"} fontWeight={"bold"}>
+            <Text
+              fontSize={"small"}
+              fontWeight={"bold"}
+              fontFamily={'"Raleway", sans-serif'}
+              letterSpacing={"1px"}
+            >
               Email Now!
             </Text>
           </Link>
         </Stack>
         <HStack py={1} pr={"2"} bg={"whatsapp.700"} w={"50%"} justify={"right"}>
           <Link href={props.navData.whatsapp} isExternal>
-            <Text fontSize={"small"} fontWeight={"bold"}>
+            <Text
+              fontSize={"small"}
+              fontWeight={"bold"}
+              fontFamily={'"Raleway", sans-serif'}
+              letterSpacing={"1px"}
+            >
               WhatsApp Now!
             </Text>
           </Link>

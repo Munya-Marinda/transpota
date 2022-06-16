@@ -1,26 +1,29 @@
 import {
   Container,
   HStack,
-  Button,
-  Link,
   Stack,
   Text,
   Image,
   Avatar,
   Center,
   Box,
+  Divider,
 } from "@chakra-ui/react";
-import Navbar from "./Navbar/Navbar";
+import Navbar from "./Navbar/Navbar.jsx";
+import Footer from "./Footer/Footer.jsx";
+import ContactModal from "./ContactModal/ContactModal.jsx";
+import Gallery from "./Gallery/Gallery";
 import { animated, useSpring } from "react-spring";
-import { useEffect, useState } from "react";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 
 const MainApp = () => {
   //TranspotaData
   const TranspotaData = {
     routes: "Cape Town to Zimbabwe  -  Zimbabwe to Cape Town",
-    whatsapp: "https://wa.me/+2760017870",
-    email: "mailto:munyadesign@yahoo.com",
+    whatsappLink: "https://wa.me/+2760017870",
+    whatsappNumber: "+2760017870",
+    emailLink: "mailto:munyadesign@yahoo.com",
+    emailAddress: "munyadesign@yahoo.com",
   };
   // Testimonie data
   const TestimonyData = [
@@ -65,35 +68,47 @@ const MainApp = () => {
       to: { color: "#B28900" },
       from: { color: "green" },
       reverse: colorChange,
-      delay: 1000,
+      delay: 7000,
       onRest: () => setconstProps(!colorChange),
     });
     const constProps2 = useSpring({
       to: { color: "maroon" },
       from: { color: "#B28900" },
       reverse: colorChange2,
-      delay: 2000,
+      delay: 13000,
       onRest: () => setconstProps2(!colorChange2),
     });
     const constProps3 = useSpring({
       to: { color: "green" },
       from: { color: "#B28900" },
       reverse: colorChange3,
-      delay: 3000,
+      delay: 15000,
       onRest: () => setconstProps3(!colorChange3),
     });
 
     return (
-      <Stack spacing={1}>
-        <Center my={"10vw"}>
-          <Image src={"/assets/svg/quote-currency.svg"} w={"80vw"} />
+      <Stack
+        spacing={1}
+        direction={{ base: "column", md: "row" }}
+        justify={"space-evenly"}
+      >
+        <Center my={{ base: "10vw", md: "2vw" }}>
+          <Image
+            src={"/assets/svg/quote-currency.svg"}
+            w={{ base: "80vw", md: "70vh" }}
+          />
         </Center>
-        <Stack spacing={"-2"} fontSize={"xxx-large"} fontWeight={"black"}>
-          <HStack justify={"space-between"}>
+        <Stack
+          spacing={"-2"}
+          fontWeight={"black"}
+          justify={"center"}
+          alignItems={{ base: "center", md: "start" }}
+        >
+          <HStack>
             <Stack>
               <AnimatedText
                 spacing={"-2"}
-                fontSize={"17vw"}
+                fontSize={{ base: "12vw", md: "7vw" }}
                 fontWeight={"black"}
                 style={constProps}
               >
@@ -103,7 +118,7 @@ const MainApp = () => {
             <Stack>
               <AnimatedText
                 spacing={"-2"}
-                fontSize={"17vw"}
+                fontSize={{ base: "12vw", md: "7vw" }}
                 fontWeight={"black"}
                 style={constProps2}
               >
@@ -113,7 +128,7 @@ const MainApp = () => {
           </HStack>
           <AnimatedText
             spacing={"-2"}
-            fontSize={"20vw"}
+            fontSize={{ base: "13vw", md: "8vw" }}
             fontWeight={"black"}
             style={constProps3}
           >
@@ -124,142 +139,137 @@ const MainApp = () => {
     );
   };
 
-  const BookNowCTA = (props) => {
-    return (
-      <Stack justify={"space-evenly"}>
-        <Center>
-          <Image src={"/assets/svg/quote-chat.svg"} w={"80vw"} />
-        </Center>
-        <Center
-          borderBottom={"1px"}
-          borderBottomColor={"black"}
-          pb={"35px"}
-          mb={"20px"}
-        >
-          <Button
-            w={"fit-content"}
-            size={"lg"}
-            variant={"solid"}
-            color={"white"}
-            bg={"#800000"}
-            borderWidth={"4px"}
-            borderStyle={"double"}
-            borderColor={"white"}
-            _hover={{ background: "black" }}
-            onClick={() => {
-              props.return_func_gotoContactUs();
-            }}
-          >
-            BOOK NOW
-          </Button>
-        </Center>
-      </Stack>
-    );
-  };
-  const contactCTA = useRef(null);
-  //
-  //
+  const ChatToUs = (props) => {
+    const [usAnimation, setusAnimation] = useState(false);
 
-  const Gallary = () => {
+    const usAnimationProps = useSpring({
+      to: { color: "#800000" },
+      from: { color: "green" },
+      reverse: usAnimation,
+      delay: 3000,
+      onRest: () => setusAnimation(!usAnimation),
+    });
+
     return (
-      <Stack>
-        <HStack justify={"space-between"}>
-          <Stack>
-            <Text fontSize={"15vw"} fontWeight={"black"} textAlign={"center"}>
-              GALARY
-            </Text>
-            <HStack>
-              <Stack>
-                <Image w={"50vw"} src={"/assets/photos/busfront-1x1.jpg"} />
-              </Stack>
-              <Stack>
-                <Image w={"50vw"} src={"/assets/photos/busfront-2-1x1.jpg"} />
-              </Stack>
-              <Stack>
-                <Image w={"50vw"} src={"/assets/photos/busANDtrailer-1.jpg"} />
-              </Stack>
-              <Center pos={"relative"} justify={"center"} alignItems={"center"}>
-                <Box
-                  w={"17vw"}
-                  h={"17vw"}
-                  bg={"black"}
-                  opacity={0.9}
-                  pos={"absolute"}
-                  justify={"center"}
-                  alignItems={"center"}
-                >
-                  <Center h={"inherit"}>
-                    <Text fontSize={"xx-large"} color={"white"}>
-                      +
-                    </Text>
-                  </Center>
-                </Box>
-                <Image w={"50vw"} src={"/assets/photos/busside-1x1.jpg"} />
-              </Center>
-            </HStack>
-          </Stack>
-        </HStack>
-        <Stack
-          alignItems={"center"}
-          pb={"30px"}
-          fontWeight={"Bold"}
-          fontSize={"25px"}
+      <Stack
+        justify={"center"}
+        bg={{ base: "transparent", md: "#B28900" }}
+        direction={{ base: "column", md: "row" }}
+        py={{ md: "13vh" }}
+      >
+        {/* moblie quote-chat */}
+        <Center>
+          <Image
+            src={"/assets/svg/quote-chat.svg"}
+            w={"80vw"}
+            display={{ base: "block", md: "none" }}
+          />
+        </Center>
+
+        {/* wideview quote-chatv2 left */}
+        <Center>
+          <Image
+            mr={"5vw"}
+            src={"/assets/svg/quote-chatv2.svg"}
+            display={{ base: "none", md: "block" }}
+            w={{ base: "80vw", md: "50vh" }}
+          />
+        </Center>
+
+        {/* hybrid Button */}
+        <Center
+          borderBottom={{ base: "2px", md: "0px" }}
+          borderBottomColor={{ base: "#800000", md: "0px" }}
+          pb={{ base: "30px" }}
+          pt={{ base: "10px" }}
+          mb={{ base: "20px" }}
+          p={{ md: "3vw" }}
         >
-          <Image src={"/assets/svg/bus-on-road.svg"} w={"95vw"} />
-        </Stack>
+          <Stack
+            color={"black"}
+            fontWeight={"bold"}
+            fontSize={{ base: "13vw", md: "15vh" }}
+          >
+            <HStack justify={{ base: "center", md: "left" }}>
+              <Text>Chat to</Text>
+              <AnimatedText style={usAnimationProps}>us.</AnimatedText>
+            </HStack>
+            <Stack spacing={{ base: 6, md: 10 }}>
+              <Text
+                fontSize={{ base: "7vw", md: "2xl" }}
+                textAlign={{ base: "center", md: "left" }}
+              >
+                Our great team is waiting to answer all of your questions.
+              </Text>
+              <ContactModal
+                whatsappLink={TranspotaData.whatsappLink}
+                emailLink={TranspotaData.emailLink}
+              />
+            </Stack>
+          </Stack>
+        </Center>
       </Stack>
     );
   };
+  //
+  //
 
   const Testimonies = () => {
     return (
-      <Stack alignItems={"center"} spacing={"3"}>
-        {TestimonyData.map((user, index) => (
-          <HStack
-            key={index}
-            w={"95%"}
-            p={"4px"}
-            bg={"white"}
-            borderWidth={"1px"}
-            boxShadow={"2xl"}
-            borderRadius={"lg"}
-          >
-            <Avatar size={"sm"} src={user.avatar_src} />
-            <Stack spacing={"-1"}>
-              <Text fontWeight={"bold"}>{user.name}</Text>
-              <Text fontSize={"sm"}>{user.quote}</Text>
-            </Stack>
-          </HStack>
-        ))}
-      </Stack>
-    );
-  };
-
-  const WhatsAppLink = () => {
-    return (
-      <HStack
-        p={"15px"}
-        bg={"whatsapp.700"}
+      <Box
+        borderColor={"#800000"}
+        p={{ base: "4px", md: "10px" }}
+        bg={"white"}
         borderWidth={"1px"}
         boxShadow={"2xl"}
         borderRadius={"lg"}
-        color={"white"}
+        display={"flex"}
+        flexWrap={"wrap"}
+        justifyContent={"space-evenly"}
+        w={{ base: "100%", md: "70%" }}
       >
-        <Image src="/assets/svg/whatsapp_nobg.svg" w={"40%"} />
-        <Stack pl={"15px"}>
-          <Link href={TranspotaData.whatsapp} isExternal>
-            <Text fontSize={"large"}>Let's Chat On </Text>
-            <Text fontSize={"x-large"} fontWeight={"bold"}>
-              Whatsapp!
-            </Text>
-          </Link>
-          <Link href={TranspotaData.email}>
-            <Text fontSize={"medium"} fontWeight={"bold"}>
-              Or <u>email us</u>
-            </Text>
-          </Link>
+        {TestimonyData.map((user, index) => (
+          <>
+            {index !== 0 ? (
+              <Divider w={"75%"} display={{ base: "block", md: "none" }} />
+            ) : null}
+            <HStack
+              my={"15px"}
+              key={index}
+              w={{ base: "95%", md: "25vw" }}
+              px={"20px"}
+              bg={"white"}
+            >
+              <Avatar size={"sm"} src={user.avatar_src} />
+              <Stack spacing={"-1"}>
+                <Text fontWeight={"bold"}>{user.name}</Text>
+                <Text fontSize={"sm"}>{user.quote}</Text>
+              </Stack>
+            </HStack>
+          </>
+        ))}
+      </Box>
+    );
+  };
+
+  // E v e r y t h i n g
+  const MainAppContent = () => {
+    return (
+      <Stack spacing={10}>
+        {/* Color change */}
+        <TextColorChange />
+
+        {/* Book Now CTA */}
+        <ChatToUs />
+
+        {/* Service Information */}
+        <Gallery />
+
+        {/* Service Information */}
+        <Stack alignItems={"center"} p={"4px"}>
+          <Testimonies />
         </Stack>
-      </HStack>
+      </Stack>
     );
   };
 
@@ -278,34 +288,30 @@ const MainApp = () => {
   //
 
   return (
-    <>
+    <Stack fontFamily={'"Raleway", sans-serif'} spacing={0}>
       <Navbar navData={TranspotaData} />
+      <Center>
+        <Stack>
+          {/* Mobile View */}
+          <Container display={{ base: "block", md: "none" }} py={"50px"}>
+            <MainAppContent />
+          </Container>
 
-      <Container borderWidth={"1px"} borderColor={"gray"}>
-        <Stack spacing={10} py={"20px"}>
-          {/* Color change */}
-          <TextColorChange />
-
-          {/* Book Now CTA */}
-          <BookNowCTA
-            return_func_gotoContactUs={() => {
-              contactCTA.current.scrollIntoView({ behavior: "smooth" });
-            }}
-          />
-
-          {/* Service Information */}
-          <Gallary />
-
-          {/* Service Information */}
-          <Testimonies />
-
-          {/* Book Now CTA */}
-          <Stack ref={contactCTA}>
-            <WhatsAppLink />
+          {/* Wide View */}
+          <Stack display={{ base: "none", md: "block" }} py={"50px"}>
+            <MainAppContent />
           </Stack>
         </Stack>
-      </Container>
-    </>
+      </Center>
+
+      {/* Footer */}
+      <Footer
+        whatsappLink={TranspotaData.whatsappLink}
+        whatsappNumber={TranspotaData.whatsappNumber}
+        emailLink={TranspotaData.emailLink}
+        emailAddress={TranspotaData.emailAddress}
+      />
+    </Stack>
   );
 };
 
