@@ -14,11 +14,10 @@ const Navbar = (props) => {
           fontWeight={"bold"}
           letterSpacing={"2px"}
           fontFamily={'"Raleway", sans-serif'}
-          // fontFamily={
-          //   '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif'
-          // }
         >
-          <marquee>{props.navData.routes}</marquee>
+          <marquee>
+            {props.navData.routes.map((element) => element + " | ")}
+          </marquee>
         </Text>
       </Stack>
       <HStack

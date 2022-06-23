@@ -14,12 +14,38 @@ import Footer from "./Footer/Footer.jsx";
 import ContactModal from "./ContactModal/ContactModal.jsx";
 import Gallery from "./Gallery/Gallery";
 import { animated, useSpring } from "react-spring";
-import { useRef, useState } from "react";
+import { useState } from "react";
 
 const MainApp = () => {
   //TranspotaData
   const TranspotaData = {
-    routes: "Cape Town to Zimbabwe  -  Zimbabwe to Cape Town",
+    routes: [
+      "CAPE TOWN",
+      "ZIMBABWE",
+      "BLOEMFONTEIN",
+      "JOHANNESBURG",
+      "PRETORIA",
+      "POLOKWANE",
+      "NGUNDU",
+      "MASVINGO",
+      "CHIREDZI",
+      "CHIPINGE",
+      "CHECHECHE",
+      "RUSAPE",
+      "MUTARE",
+      "MARONDERA",
+      "CHEGUTU",
+      "KADOMA",
+      "KWEKWE",
+      "GWERU",
+      "BULAWAYO",
+      "NKAYI",
+      "LUPANE",
+      "HWANGE",
+      "VICTORIA FALLS",
+      "MUREHWA",
+      "MUTOKO",
+    ],
     whatsappLink: "https://wa.me/+2760017870",
     whatsappNumber: "+2760017870",
     emailLink: "mailto:munyadesign@yahoo.com",
