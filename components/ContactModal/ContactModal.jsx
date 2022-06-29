@@ -41,14 +41,35 @@ const ContactModal = (props) => {
       >
         LET'S CHAT
       </Button>
+
+      {/* Email Button */}
+      <Link href={props.emailLink} isExternal>
+        <Button
+          size={"sm"}
+          variant="solid"
+          bg={{ base: "gray", md: "white" }}
+          _hover={{
+            background: "green",
+            borderWidth: "0px",
+            borderColor: "green",
+          }}
+          _active={{
+            background: "green",
+          }}
+        >
+          Email instead
+        </Button>
+      </Link>
+
+      {/* Modal */}
       <Modal
         isOpen={isOpen}
         onClose={onClose}
         initialFocusRef={refOpenWhatsApp}
       >
         <ModalOverlay />
-        <ModalContent>
-          <ModalHeader>
+        <ModalContent w={"90vw"}>
+          <ModalHeader borderBottomColor={"gray"} borderBottomWidth={"1px"}>
             Opening
             <Text
               ml={"5px "}
@@ -78,7 +99,7 @@ const ContactModal = (props) => {
                   </Circle>
                 </Center>
               </Text>
-              <Text> Make sure you the latest version installed.</Text>
+              <Text>Make sure you the latest version installed.</Text>
             </Stack>
           </ModalBody>
           <ModalFooter>
@@ -102,7 +123,7 @@ const ContactModal = (props) => {
                 <Button
                   size={"md"}
                   variant="ghost"
-                  borderColor={"gray"}
+                  bg={"gray"}
                   borderWidth={"1px"}
                   onClick={onOpen}
                 >

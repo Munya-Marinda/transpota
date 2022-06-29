@@ -14,7 +14,7 @@ import Footer from "./Footer/Footer.jsx";
 import ContactModal from "./ContactModal/ContactModal.jsx";
 import Gallery from "./Gallery/Gallery";
 import { animated, useSpring } from "react-spring";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const MainApp = () => {
   //TranspotaData
@@ -50,6 +50,16 @@ const MainApp = () => {
     whatsappNumber: "+2760017870",
     emailLink: "mailto:munyadesign@yahoo.com",
     emailAddress: "munyadesign@yahoo.com",
+    infoCards: [
+      {
+        text: "A WELL TRAINED CREW HOST",
+        imageURL: "https://picsum.photos/200",
+      },
+      { text: "GUARANTEED SERVICE", imageURL: "https://picsum.photos/200" },
+      { text: "XXXXX", imageURL: "https://picsum.photos/200" },
+
+      { text: "NEKUTI MAKATIKOSHERA", imageURL: "https://picsum.photos/200" },
+    ],
   };
   // Testimonie data
   const TestimonyData = [
@@ -82,7 +92,36 @@ const MainApp = () => {
   //
   //
   //
-  // Color change Test Starts
+
+  const InfoCard = (props) => {
+    return (
+      <Box
+        key={props.thisKey}
+        w={{ base: "90vw", md: "fit-content" }}
+        color={"black"}
+        p={"10px"}
+        mb={"15px"}
+        borderRadius={"15px"}
+        style={{
+          border: "1px solid gray",
+          background:
+            "radial-gradient( farthest-corner at left bottom, #FFFFFF 0%, #FFFFAC 8%, #D1B464 25%, #a37f29 62.5%, #a37f29 100%)",
+          transition: "transform .2s",
+        }}
+        _hover={{
+          base: { transform: "scale(0.9)" },
+          md: { transform: "scale(1.2)" },
+        }}
+      >
+        <Image src={props.imageURL} w={"100%"} borderRadius={"15px"} />
+        <Text mt={"10px"} fontWeight={"bold"} fontSize={"small"}>
+          {props.text}
+        </Text>
+      </Box>
+    );
+  };
+
+  // Color change component
 
   const AnimatedText = animated(Text);
   const TextColorChange = () => {
@@ -94,78 +133,81 @@ const MainApp = () => {
       to: { color: "#B28900" },
       from: { color: "green" },
       reverse: colorChange,
-      delay: 7000,
+      delay: 2000,
       onRest: () => setconstProps(!colorChange),
     });
     const constProps2 = useSpring({
       to: { color: "maroon" },
       from: { color: "#B28900" },
       reverse: colorChange2,
-      delay: 13000,
+      delay: 3000,
       onRest: () => setconstProps2(!colorChange2),
     });
     const constProps3 = useSpring({
       to: { color: "green" },
       from: { color: "#B28900" },
       reverse: colorChange3,
-      delay: 15000,
+      delay: 5000,
       onRest: () => setconstProps3(!colorChange3),
     });
 
     return (
-      <Stack
-        spacing={1}
-        direction={{ base: "column", md: "row" }}
-        justify={"space-evenly"}
-      >
-        <Center my={{ base: "10vw", md: "2vw" }}>
-          <Image
-            src={"/assets/svg/quote-currency.svg"}
-            w={{ base: "80vw", md: "70vh" }}
-          />
-        </Center>
-        <Stack
-          spacing={"-2"}
-          fontWeight={"black"}
-          justify={"center"}
-          alignItems={{ base: "center", md: "start" }}
-        >
-          <HStack>
-            <Stack>
-              <AnimatedText
-                spacing={"-2"}
-                fontSize={{ base: "12vw", md: "7vw" }}
-                fontWeight={"black"}
-                style={constProps}
-              >
-                Easy.
-              </AnimatedText>
-            </Stack>
-            <Stack>
-              <AnimatedText
-                spacing={"-2"}
-                fontSize={{ base: "12vw", md: "7vw" }}
-                fontWeight={"black"}
-                style={constProps2}
-              >
-                Safe.
-              </AnimatedText>
-            </Stack>
-          </HStack>
-          <AnimatedText
-            spacing={"-2"}
-            fontSize={{ base: "13vw", md: "8vw" }}
-            fontWeight={"black"}
-            style={constProps3}
+      <Stack>
+        <Stack fontWeight={"black"} alignItems={"center"} mb={"50px"}>
+          <Box
+            display={"flex"}
+            flexWrap={"wrap"}
+            justifyContent={"space-evenly"}
+            w={"fit-content"}
           >
-            Reliable.
-          </AnimatedText>
+            <AnimatedText
+              spacing={"-2"}
+              fontSize={{ base: "12vw", md: "7vw" }}
+              fontWeight={"black"}
+              style={constProps}
+            >
+              Reliable
+            </AnimatedText>
+            <AnimatedText
+              fontSize={{ base: "12vw", md: "7vw" }}
+              fontWeight={"black"}
+              style={constProps3}
+              mx={{ base: "0px", md: "20px" }}
+              ml={{ base: "-15px" }}
+            >
+              and
+            </AnimatedText>
+
+            <AnimatedText
+              fontSize={{ base: "12vw", md: "7vw" }}
+              fontWeight={"black"}
+              style={constProps2}
+            >
+              Affordable.
+            </AnimatedText>
+          </Box>
+        </Stack>
+        <Stack textAlign={"center"} color={"white"}>
+          <Box
+            display={"flex"}
+            flexWrap={"wrap"}
+            justifyContent={"space-evenly"}
+          >
+            {TranspotaData.infoCards.map((info, index) => (
+              <InfoCard
+                text={info.text}
+                imageURL={info.imageURL}
+                thisKey={index}
+                key={index}
+              />
+            ))}
+          </Box>
         </Stack>
       </Stack>
     );
   };
 
-  const ChatToUs = (props) => {
+  const ChatToUs = () => {
     const [usAnimation, setusAnimation] = useState(false);
 
     const usAnimationProps = useSpring({
@@ -212,7 +254,7 @@ const MainApp = () => {
           p={{ md: "3vw" }}
         >
           <Stack
-            color={"black"}
+            color={{ base: "white", md: "black" }}
             fontWeight={"bold"}
             fontSize={{ base: "13vw", md: "15vh" }}
           >
@@ -314,8 +356,20 @@ const MainApp = () => {
   //
 
   return (
-    <Stack fontFamily={'"Raleway", sans-serif'} spacing={0}>
+    <Stack fontFamily={'"Raleway", sans-serif'} spacing={0} bg={"black"}>
       <Navbar navData={TranspotaData} />
+      <Stack
+        backgroundImage={"/assets/photos/busfront-1x1.jpg"}
+        backgroundSize={"cover"}
+      >
+        <Center bg={"rgba(0,0,0,0.8)"} h={{ base: "45vh", md: "fit-content" }}>
+          <Image
+            src={"/assets/svg/transpota_logo.svg"}
+            w={{ base: "1000vw", md: "80vw" }}
+            padding={{ base: "20px", md: "75px" }}
+          />
+        </Center>
+      </Stack>
       <Center>
         <Stack>
           {/* Mobile View */}

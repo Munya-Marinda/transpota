@@ -29,7 +29,7 @@ const Navbar = (props) => {
         spacing={0}
       >
         <Stack py={1} pl={"2"} bg={"#B28900"} w={"50%"} justify={"right"}>
-          <Link href={props.navData.email} isExternal>
+          <Link href={props.navData.emailLink} isExternal>
             <Text
               fontSize={"small"}
               fontWeight={"bold"}
@@ -41,7 +41,7 @@ const Navbar = (props) => {
           </Link>
         </Stack>
         <HStack py={1} pr={"2"} bg={"whatsapp.700"} w={"50%"} justify={"right"}>
-          <Link href={props.navData.whatsapp} isExternal>
+          <Link href={props.navData.whatsappLink} isExternal>
             <Text
               fontSize={"small"}
               fontWeight={"bold"}
